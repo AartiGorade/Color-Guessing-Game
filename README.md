@@ -1,2 +1,2 @@
 # Color-Guessing-Game
-Color Guessing Game using JavaScript
+Color Guessing Game using HTML and JavaScript
