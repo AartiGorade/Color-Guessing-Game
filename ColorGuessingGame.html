@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color guessing game</title>
+    <meta name="author" content="Aarti">
+    <!-- Part 1 -->
+</head>
+    
+<!--Main function - colorGuessingGame() called immediately on web page load-->
+<body onload=colorGuessingGame()>
+  <script>
+    //global variables
+    var user_guess;
+    var target_guess;
+    var randomNo=0;
+    var finished = false;
+    var noGuess=0;
+    var colArray=["black","blue","red","purple","pink","yellow","cyan","gold","gray","green"];
+    
+    //Main function , randomly chose color and ask user for inputs until user guess it correctly
+    function colorGuessingGame() {  
+        randomNo=Math.floor(Math.random()*colArray.length);
+        target_guess=colArray[randomNo];
+        alert("Random color chosen = "+colArray[randomNo]);
+        
+        do{
+          user_guess=prompt("I am thinking of one of these colors:\n\n black,blue,red,purple,pink,yellow,cyan,gold,gray,green \n\n What color I am thinking of?");
+            
+          //Increment number of guess each time    
+          noGuess++;
+          
+          //Call helper function - check_guess which returns success or failure   
+          finished=check_guess();
+          }while(!finished)        
+    }
+      
+      //Checks for errors along with success case. Also sets background color as chosen color.
+      function check_guess(){
+          if(colArray.indexOf(user_guess)==-1){
+              alert("Sorry, I don't recognize entered color. \n\nPlease try again.");
+              return false;
+              }
+          else if(user_guess<target_guess){
+              alert("Sorry, Your guess is not correct !\n\n Hint: Your guess is alphabetically lower than mine\n\nPlease try again.");
+              return false;
+          }
+          else if(user_guess>target_guess){
+              alert("Sorry, Your guess is not correct !\n\n Hint: Your guess is alphabetically greater than mine\n\nPlease try again.");
+              return false;    
+          }
+          document.body.style.backgroundColor=user_guess;
+          alert("Congratulations! You have guessed the color right!\n\nIt took you "+noGuess+" guesses to finish the game.\n\nYou can see the color in background. Enjoy!")
+          return true;
+      }
+
+    
+  </script>
+</body>
+</html>
